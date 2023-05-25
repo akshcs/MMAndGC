@@ -29,9 +29,9 @@ public class HelloWorldResource {
     // Set Heap Size to 100MB to cause Heap Overflow
     private void allocateHeapMemory(int count) {
         ArrayList<DummyClass> dummyClassArrayList = new ArrayList<>();
-        while(count<100){
-//            dummyClassArrayList.add(allocateHeapMemoryFromDummyClass());
-            allocateHeapMemoryFromDummyClass();
+        while(count<10){
+            dummyClassArrayList.add(allocateHeapMemoryFromDummyClass());
+//            allocateHeapMemoryFromDummyClass();
             count++;
         }
     }
