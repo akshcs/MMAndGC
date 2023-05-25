@@ -5,6 +5,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.sql.Timestamp;
+import java.time.Duration;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 @RestController
@@ -27,13 +30,15 @@ public class HelloWorldResource {
     }
 
     // Set Heap Size to 100MB to cause Heap Overflow
+    // -XX:+UseSerialGC Make GC Serial
     private void allocateHeapMemory(int count) {
-        ArrayList<DummyClass> dummyClassArrayList = new ArrayList<>();
+        LocalDateTime startTime = LocalDateTime.now();
         while(count<100){
-//            dummyClassArrayList.add(allocateHeapMemoryFromDummyClass());
             allocateHeapMemoryFromDummyClass();
             count++;
         }
+        LocalDateTime endTime = LocalDateTime.now();
+        System.out.println(Duration.between(startTime, endTime).toMillis());
     }
 
     private DummyClass allocateHeapMemoryFromDummyClass(){
