@@ -5,6 +5,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
+
 @RestController
 @RequestMapping("/api")
 public class HelloWorldResource {
@@ -26,6 +28,17 @@ public class HelloWorldResource {
 
     // Set Heap Size to 100MB to cause Heap Overflow
     private void allocateHeapMemory(int count) {
-        int[] largeArray = new int[100000000];
+        ArrayList<DummyClass> dummyClassArrayList = new ArrayList<>();
+        while(count<100){
+//            dummyClassArrayList.add(allocateHeapMemoryFromDummyClass());
+            allocateHeapMemoryFromDummyClass();
+            count++;
+        }
+    }
+
+    private DummyClass allocateHeapMemoryFromDummyClass(){
+        DummyClass obj = new DummyClass();
+        obj.allocateHeapMemory();
+        return obj;
     }
 }
