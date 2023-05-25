@@ -12,14 +12,14 @@ public class HelloWorldResource {
     @GetMapping("/")
     @ApiOperation(value = "Gets Sample String", notes = "Just a Sample API that returns String", response = String.class)
     public String getString(){
-        allocateHeapMemory(0);
         allocateStackMemory(0);
+        allocateHeapMemory(0);
         return "Hello World It is Friday";
     }
 
     // Set Stack Size to 200KB to cause Stack Overflow
     private void allocateStackMemory(int count) {
-        if (count < 2150) {
+        if (count < 7000) {
             allocateStackMemory(count + 1);
         }
     }
